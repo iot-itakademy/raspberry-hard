@@ -1,6 +1,5 @@
 # import all lib required
 import datetime
-import os
 import shutil
 import time
 import picamera
