@@ -4,10 +4,6 @@ import time
 try:
     GPIO.setmode(GPIO.BCM)
 
-    print("+-----------------------------------------------------------+")
-    print("|   Mesure de distance par le capteur ultrasonore HC-SR04   |")
-    print("+-----------------------------------------------------------+")
-
     Trig = 23  # Entree Trig du HC-SR04 branchee au GPIO 23
     Echo = 24  # Sortie Echo du HC-SR04 branchee au GPIO 24
 
