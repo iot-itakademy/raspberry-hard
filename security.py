@@ -1,9 +1,9 @@
 import RPi.GPIO as GPIO
 import time
-import take_picture
+from take_picture import take_picture
 import requests
 
-minimumDistance = requests.get('https://').json()
+# minimumDistance = requests.get('https://').json()
 
 try:
     # setup motion sensore
@@ -30,10 +30,12 @@ try:
         while GPIO.input(Echo) == 1:  # return of the echo
             endImpulse = time.time()
 
-        distance = round((endImpulse - startImpulse) * 340 * 100 / 2, 1)  # calculate distance (cm)
+        distance = int(round((endImpulse - startImpulse) * 340 * 100 / 2, 1))  # calculate distance (cm)
 
         # if the new distance is less than the previous or if the new distance is less than 2 meters it takes a picture
-        if distance < previous | distance <= minimumDistance:
-            take_picture.take_picture()
+        if distance < previous or distance <= 10:  # todo: remplacer 200 par minimumDistance
+            take_picture()
+
+        previous = distance
 finally:
     GPIO.cleanup()

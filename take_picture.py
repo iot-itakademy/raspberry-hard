@@ -14,12 +14,10 @@ def take_picture():
     try:
         # open connection with the camera
         camera.start_preview()
-        time.sleep(2)
 
         # create the name of the picture
         date = datetime.datetime.now()
-        fileName = str(date.year) + '-' + str(date.month) + '-' + str(date.day) + '_T' + str(date.hour) + '-' + str(
-            date.minute) + '-' + str(date.second) + '_MManual.jpeg'
+        fileName = str(date.year) + '-' + str(date.month) + '-' + str(date.day) + '_T' + str(date.hour) + '-' + str(date.minute) + '-' + str(date.second) + '_MManual.jpeg'
 
         # take the picture
         camera.capture(fileName, 'jpeg')
