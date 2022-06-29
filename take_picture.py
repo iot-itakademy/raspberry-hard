@@ -1,7 +1,6 @@
 # import all lib required
 import datetime
 import shutil
-import time
 import picamera
 
 
@@ -17,7 +16,7 @@ def take_picture():
 
         # create the name of the picture
         date = datetime.datetime.now()
-        fileName = str(date.year) + '-' + str(date.month) + '-' + str(date.day) + '_T' + str(date.hour) + '-' + str(date.minute) + '-' + str(date.second) + '_MManual.jpeg'
+        fileName = str(date.year) + '-' + str(date.month) + '-' + str(date.day) + '_T' + str(date.hour) + '-' + str(date.minute) + '-' + str(date.second) + '-' + str(date.microsecond)[:-3] + '_MManual.jpeg'
 
         # take the picture
         camera.capture(fileName, 'jpeg')

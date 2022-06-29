@@ -19,7 +19,7 @@ try:
 
     previous = 0
     while True:
-        time.sleep(1)  # each seconds
+        # time.sleep(1)  # each seconds
         GPIO.output(Trig, True)
         time.sleep(0.00001)
         GPIO.output(Trig, False)
@@ -31,9 +31,10 @@ try:
             endImpulse = time.time()
 
         distance = int(round((endImpulse - startImpulse) * 340 * 100 / 2, 1))  # calculate distance (cm)
+        print('distance: ' + str(distance), 'previous: ' + str(previous))
 
         # if the new distance is less than the previous or if the new distance is less than 2 meters it takes a picture
-        if distance < previous or distance <= 10:  # todo: remplacer 200 par minimumDistance
+        if (distance < previous and distance <= 10) or distance <= 10:  # todo: remplacer 200 par minimumDistance
             take_picture()
 
         previous = distance
