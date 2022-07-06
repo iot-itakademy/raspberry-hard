@@ -13,7 +13,27 @@ def take_picture(width: int, height: int, pictureType: str):
     try:
         # create the name of the picture
         date = datetime.datetime.now()
-        fileName = str(date.year) + '-' + str(date.month) + '-' + str(date.day) + '_T' + str(date.hour) + '-' + str(date.minute) + '-' + str(date.second) + '-' + str(date.microsecond)[:-3] + '_M' + pictureType + '.jpeg'
+        month = str(date.month)
+        day = str(date.day)
+        hour = str(date.hour)
+        minute = str(date.minute)
+        second = str(date.second)
+        microsecond = str(date.microsecond)[:-3]
+
+        if len(month) < 2:
+            month = '0' + month
+        if len(day) < 2:
+            day = '0' + day
+        if len(hour) < 2:
+            hour = '0' + hour
+        if len(minute) < 2:
+            minute = '0' + minute
+        if len(second) < 2:
+            second = '0' + second
+        if len(microsecond) < 3:
+            microsecond = '0' + microsecond
+
+        fileName = str(date.year) + '-' + month + '-' + day + '-' + hour + '-' + minute + '-' + second + '-' + microsecond + '_M' + pictureType + '.jpeg'
 
         # take the picture
         camera.capture(fileName, 'jpeg')

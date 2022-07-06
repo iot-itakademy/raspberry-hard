@@ -45,7 +45,6 @@ try:
         else:
             callApi = callApi - 1
 
-        # time.sleep(1)  # each seconds
         GPIO.output(Trig, True)
         time.sleep(0.00001)
         GPIO.output(Trig, False)
@@ -56,9 +55,10 @@ try:
             endImpulse = time.time()
 
         distance = int(round((endImpulse - startImpulse) * 340 * 100 / 2, 1))  # calculate distance (cm)
-
+        print('distance: ' + str(distance),'previous: ' + str(previous),'minimumDistance: ' + str(minimumDistance))
         # if the new distance is less than the previous or if the new distance is less than 2 meters it takes a picture
-        if (distance < previous and distance <= 10) or distance <= minimumDistance:
+        if distance <= minimumDistance and previous <= minimumDistance:
+            print('"click"')
             threads = [threading.Thread(target=take_picture(width, height, pictureType)) for _ in range(amountPicture)]
             [thread.start() for thread in threads]
             [thread.join() for thread in threads]
