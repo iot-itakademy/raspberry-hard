@@ -13,6 +13,8 @@ def take_picture(width: int, height: int, pictureType: str):
     try:
         # create the name of the picture
         date = datetime.datetime.now()
+
+        # check if all digits have a minimum length of 2
         month = str(date.month)
         day = str(date.day)
         hour = str(date.hour)
@@ -42,6 +44,7 @@ def take_picture(width: int, height: int, pictureType: str):
         file_source = '/home/admin/Desktop/script/' + fileName
         file_destination = '/home/admin/Images/security/' + fileName
         shutil.move(file_source, file_destination)
+
     finally:
         # close connection with the camera
         camera.close()
